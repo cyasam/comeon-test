@@ -18,7 +18,6 @@ export const handleLogout = (data, history) => {
                 type: UNAUTH_SUCCESS,
                 payload: response.data
             });
-            history.push('/login');
         } else {
             dispatch({
                 type: UNAUTH_ERROR,

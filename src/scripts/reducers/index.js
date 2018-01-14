@@ -5,8 +5,9 @@ import fetchCategories from './fetch-categories-reducer';
 import fetchPlayer from './fetch-player-reducer';
 import fetchSearch from './fetch-search-reducer';
 import { reducer as form  } from 'redux-form';
+import { UNAUTH_SUCCESS } from '../actions';
 
-export default combineReducers({
+const appReducer = combineReducers({
     form,
     authentication: loginForm,
     games: fetchGames,
@@ -14,3 +15,13 @@ export default combineReducers({
     player: fetchPlayer,
     search: fetchSearch
 });
+
+const rootReducer = (state, action) => {
+    if(action.type === UNAUTH_SUCCESS){
+        state = undefined;
+    }
+
+    return appReducer(state, action)
+}
+
+export default rootReducer;

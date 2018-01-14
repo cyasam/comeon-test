@@ -19,19 +19,19 @@ import store from './create-store';
 const App = () => {
     return (
         <Provider store={store}>
-            <div id="wrapper">
-                <Header />
-                
-                <div className="main container">
-                    <Router>
-                        <Switch>
-                            <Route exact path="/" component={Authentication(HomePage)} />
-                            <Route path="/search" component={Authentication(SearchPage)} />
-                            <Route path="/login" component={LoginPage} />
-                        </Switch>
-                    </Router>
+            <Router>
+                <div id="wrapper">
+                    <Header />
+                    
+                    <div className="main container">
+                            <Switch>
+                                <Route exact path="/" component={Authentication(HomePage)} />
+                                <Route path="/search" component={Authentication(SearchPage)} />
+                                <Route path="/login" component={LoginPage} />
+                            </Switch>
+                    </div>
                 </div>
-            </div>
+            </Router>
         </Provider>
     );
 };
