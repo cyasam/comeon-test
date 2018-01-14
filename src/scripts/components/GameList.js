@@ -1,13 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import { fetchGames } from '../actions';
 import GameListItem from './GameListItem';
 
 class GameList extends Component {
-    componentDidMount(){
-        this.props.fetchGames();
-    }
-
     renderComponent(){
         const list = this.props.games.data.map((game, index) => {
             return <GameListItem key={index} gameItem={game} />
@@ -36,8 +30,4 @@ class GameList extends Component {
     }
 };
 
-const mapStateToProps = state => ({
-    games: state.games
-});
-
-export default connect(mapStateToProps, { fetchGames })(GameList);
+export default GameList;

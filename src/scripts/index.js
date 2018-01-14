@@ -10,7 +10,7 @@ import Header from './components/Header';
 import Authentication from './components/hoc/Authentication';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
-
+import SearchPage from './pages/SearchPage';
 
 // Store
 import { Provider } from 'react-redux';
@@ -26,6 +26,7 @@ const App = () => {
                     <Router>
                         <Switch>
                             <Route exact path="/" component={Authentication(HomePage)} />
+                            <Route path="/search" component={Authentication(SearchPage)} />
                             <Route path="/login" component={LoginPage} />
                         </Switch>
                     </Router>

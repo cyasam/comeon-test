@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchPlayer, handleLogout } from '../actions';
+import SearchForm from './SearchForm';
 
 class ContainerHeader extends Component {
     constructor(){
@@ -54,10 +55,7 @@ class ContainerHeader extends Component {
                     </div>
                 </div>
                 <div className="four wide column">
-                    <div className="search ui small icon input ">
-                        <input type="text" placeholder="Search Game" />
-                        <i className="search icon" />
-                    </div>
+                    <SearchForm />
                 </div>
             </div>
         );

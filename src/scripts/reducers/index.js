@@ -3,6 +3,7 @@ import loginForm from './authentication-reducer';
 import fetchGames from './fetch-games-reducer';
 import fetchCategories from './fetch-categories-reducer';
 import fetchPlayer from './fetch-player-reducer';
+import fetchSearch from './fetch-search-reducer';
 import { reducer as form  } from 'redux-form';
 
 export default combineReducers({
@@ -10,5 +11,6 @@ export default combineReducers({
     authentication: loginForm,
     games: fetchGames,
     categories: fetchCategories,
-    player: fetchPlayer
+    player: fetchPlayer,
+    search: fetchSearch
 });
