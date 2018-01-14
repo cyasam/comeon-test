@@ -1,30 +1,32 @@
 import axios from 'axios';
 
-export const LOGIN_REQUEST = 'LOGIN_REQUEST';
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
-export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const AUTH_REQUEST = 'AUTH_REQUEST';
+export const AUTH_SUCCESS = 'AUTH_SUCCESS';
+export const AUTH_ERROR = 'AUTH_ERROR';
 
 export const submitLogin = (data, history) => {
     return async dispatch => {
         dispatch({
-            type: LOGIN_REQUEST
+            type: AUTH_REQUEST
         });
 
         const response = await axios('http://localhost:3000/login', { method:'POST', data });
 
         if(response.status === 200 && response.data.status === 'success'){
-            localStorage.setItem('auth', true);
+            localStorage.setItem('auth', data.username);
             dispatch({
-                type: LOGIN_SUCCESS,
-                payload: response.data
-            })
+                type: AUTH_SUCCESS,
+                payload: {
+                    status: response.data.status
+                }
+            });
             history.push('/');
         } else {
             localStorage.removeItem('auth');
             dispatch({
-                type: LOGIN_ERROR,
+                type: AUTH_ERROR,
                 payload: response.data
-            })
+            });
         }
     }
 };

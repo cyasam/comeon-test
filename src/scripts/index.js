@@ -13,19 +13,8 @@ import LoginPage from './pages/LoginPage';
 
 
 // Store
-import thunk from 'redux-thunk';
-import rootReducer from './reducers';
-import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
-import { LOGIN_SUCCESS } from './actions';
-
-const store = createStore(rootReducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(), applyMiddleware(thunk));
-
-const user = localStorage.getItem('auth');
-
-if(user) {
-  store.dispatch({ type: LOGIN_SUCCESS });
-}
+import store from './create-store';
 
 const App = () => {
     return (

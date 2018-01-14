@@ -19,9 +19,13 @@ const loginResult = (req) => {
     if(existUser){
         const { password } = req.body;
         if(players[existUser].password === password){
+
+            const player = Object.assign({},players[existUser]);
+            delete player.password;
+
             return {
                 status: 'success',
-                player: players[existUser]
+                player
             }
         } else {
             return {
@@ -58,6 +62,33 @@ const logoutResult = (req) => {
     }
 };
 
+const playerResult = (req) => {
+    const { players } = db;
+
+    const { username } = req.body;
+
+    const existUser = Object.keys(players).find(player => {
+        return player === username;
+    });
+
+    if(existUser){
+        const player = Object.assign({},players[existUser]);
+        delete player.password;
+
+        return {
+            status: 'success',
+            player: {
+                username, ...player
+            }
+        }
+    } else {
+        return {
+            status: 'fail',
+            error: 'Username do not match!'
+        }
+    }
+};
+
 server.post('/login', (req, res) => {
     const result = loginResult(req);
     return res.send(result);
@@ -65,6 +96,11 @@ server.post('/login', (req, res) => {
 
 server.post('/logout', (req, res) => {
     const result = logoutResult(req);
+    return res.send(result);
+});
+
+server.post('/player', (req, res) => {
+    const result = playerResult(req);
     return res.send(result);
 });
 server.use(router);

@@ -1,13 +1,17 @@
-import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR } from '../actions';
+import { AUTH_REQUEST, AUTH_SUCCESS, AUTH_ERROR, UNAUTH_SUCCESS, UNAUTH_ERROR } from '../actions';
 
 export default (state = {}, action) => {
     switch(action.type){
-        case LOGIN_REQUEST:
-            return { isFetching: true, auth: false };
-        case LOGIN_SUCCESS:
+        case AUTH_REQUEST:
+            return { isFetching: true };
+        case AUTH_SUCCESS:
             return { isFetching: false, auth: true, ...action.payload };
-        case LOGIN_ERROR:
+        case UNAUTH_SUCCESS:
             return { isFetching: false, auth: false, ...action.payload };
+        case AUTH_ERROR:
+            return { isFetching: false, auth: false, ...action.payload };
+        case UNAUTH_ERROR:
+            return { isFetching: false, auth: true, ...action.payload };
         default:
             return state;
     }

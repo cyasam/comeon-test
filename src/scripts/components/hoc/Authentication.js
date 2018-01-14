@@ -10,13 +10,17 @@ export default (Component) => {
             }
         }
 
-        componentWillUpdate(auth) {
+        componentWillUpdate(nextProps) {
             if (!nextProps.auth) {
               this.props.history.push('/login');
             }
         }
 
         render(){
+            if (!this.props.auth) {
+                return null;
+            }
+
             return(
                 <Component {...this.props} />
             );
