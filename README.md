@@ -24,7 +24,7 @@ or
 yarn install
 ```
 
-## Running the tests
+## Running the project
 
 You can start the project with this command below.
 
