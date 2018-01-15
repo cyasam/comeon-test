@@ -5,14 +5,13 @@ import queryString from 'query-string';
 import { fetchGames, fetchSearch } from '../actions';
 import GameList from '../components/GameList';
 import CategoryList from '../components/CategoryList';
-import ContainerHeader from '../components/ContainerHeader';
 
 class SearchPage extends Component {
     componentDidMount(){
         this.props.fetchGames();
 
         const { history } = this.props;
-        const query = queryString.parse(history.location.search) || null;
+        const query = queryString.parse(history.location.search);
         this.props.fetchSearch(query, history);
     }
 
@@ -23,27 +22,13 @@ class SearchPage extends Component {
             return <div>Loading...</div>;
         }
 
-        const query = search.q;
-
-        const filteredGames = { ...games };
-
-        if(query){
-            const result = games.data.filter(game => {
-                const regex = `^.*${query.toLowerCase()}.*`;
-                return game.name.toLowerCase().match(new RegExp(regex, 'g'));
-            });
-
-            filteredGames.data = result;
-        }
-
-        return <GameList games={filteredGames} />;
+        return <GameList games={games} filterBySearch={search.q} />;
     }
 
     render(){
         const { games, search } = this.props;
         return (
             <Fragment>
-                <ContainerHeader />
                 <div className="ui grid">
                     <div className="twelve wide column">
                         {this.renderGames()}

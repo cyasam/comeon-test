@@ -9,30 +9,38 @@ class CategoryList extends Component {
     }
 
     renderComponent(){
-        const list = this.props.categories.data.map((category, index) => {
+        const { categories } = this.props;
+        
+        if(categories.isFetching){
+            return <div>Loading...</div>
+        }
+
+        if(categories.error){
+            return <div>{categories.error}</div>
+        }
+        
+        if(!categories.data.length){
+            return <div>No game categories found...</div>;
+        }
+
+        const list = categories.data.map((category, index) => {
             return <CategoryListItem key={index} categoryItem={category} />
         });
 
         return(
-            <Fragment>
-                <h3 className="ui dividing header">Categories</h3>
-                <div className="ui selection animated list category items">
-                    {list}
-                </div>
-            </Fragment>
+            <div className="ui selection animated list category items">
+                {list}
+            </div>
         );
     }
     
     render(){
-        if(this.props.categories.isFetching){
-            return <div>Loading...</div>
-        }
-        
-        if(!this.props.categories.data.length){
-            return <div>No game categories found...</div>;
-        }
-        
-        return this.renderComponent();     
+        return (
+            <Fragment>
+                <h3 className="ui dividing header">Categories</h3>
+                { this.renderComponent() }
+            </Fragment>
+        );     
     }
 };
 

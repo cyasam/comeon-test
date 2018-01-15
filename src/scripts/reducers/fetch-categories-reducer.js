@@ -9,9 +9,9 @@ export default (state = initialState, action) => {
         case FETCH_CATEGORIES_REQUEST:
             return { isFetching: true };
         case FETCH_CATEGORIES_SUCCESS:
-            return { isFetching: false, data: action.payload };
+            return { isFetching: false, ...action.payload };
         case FETCH_CATEGORIES_ERROR:
-            return { isFetching: false, error: action.error };
+            return { isFetching: false, ...action.payload };
         default:
             return state;
     }

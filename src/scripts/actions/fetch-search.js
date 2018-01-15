@@ -3,14 +3,14 @@ export const FETCH_SEARCH = 'FETCH_SEARCH';
 export const fetchSearch = (data, history) => {
     return dispatch => {
         const submitData = { ...data };
-        submitData.q = data.q.trim();
+        submitData.q = submitData.q || '';
 
         dispatch({
             type: FETCH_SEARCH,
             payload: submitData
         });
 
-        const search = data.q ? `?q=${data.q.trim()}` : '';
+        const search = submitData.q ? `?q=${submitData.q.trim()}` : '';
         
         if(history.location.search !== search){
             const searchHistory = {

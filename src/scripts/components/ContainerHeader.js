@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import { fetchPlayer, handleLogout } from '../actions';
@@ -19,7 +19,7 @@ class ContainerHeader extends Component {
         if(!avatar){
             return null;
         }
-        
+
         const avatarImage = require(`../../${avatar}`);
 
         return <img className="ui avatar image" src={avatarImage} alt="avatar" />;
@@ -30,33 +30,45 @@ class ContainerHeader extends Component {
         this.props.handleLogout({ username }, this.props.history);
     }
 
-    render(){
+    renderComponent(){
         const { player } = this.props;
 
-        if(!Object.keys(player).length || player.isFetching){
-            return null;
+        if(player.isFetching){
+            return <div>Loading...</div>;
+        }
+
+        if(player.error){
+            return <div>{player.error}</div>
         }
 
         return (
+            <Fragment>
+                <div className="ui list">
+
+                    <div className="player item">
+                        { this.renderImage(player) }
+
+                        <div className="content">
+                            <div className="header"><b className="name">{ player.name }</b></div>
+                            <div className="description event">{ player.event }</div>
+                        </div>
+                    </div>
+
+                </div>
+                <div className="logout ui left floated secondary button inverted"
+                    onClick={this.handleLogout}>
+                    <i className="left chevron icon" />
+                    Log Out
+                </div>
+            </Fragment>
+        )
+    }
+
+    render(){
+        return (
             <div className="ui grid centered">
                 <div className="twelve wide column">
-                    <div className="ui list">
-
-                        <div className="player item">
-                            { this.renderImage(player) }
-
-                            <div className="content">
-                                <div className="header"><b className="name">{ player.name }</b></div>
-                                <div className="description event">{ player.event }</div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div className="logout ui left floated secondary button inverted"
-                        onClick={this.handleLogout}>
-                        <i className="left chevron icon" />
-                        Log Out
-                    </div>
+                    { this.renderComponent() }
                 </div>
                 <div className="four wide column">
                     <SearchForm />

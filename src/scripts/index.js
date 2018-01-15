@@ -26,13 +26,13 @@ const App = () => {
                     <Header />
                     
                     <div className="main container">
-                            <Switch>
-                                <Route exact path="/" component={Authentication(HomePage)} />
-                                <Route path="/search" component={Authentication(SearchPage)} />
-                                <Route path="/game/:code" component={Authentication(GameDetailPage)} />
-                                <Route path="/category/:category" component={Authentication(CategoryPage)} />
-                                <Route path="/login" component={LoginPage} />
-                            </Switch>
+                        <Switch>
+                            <Route exact path="/" component={Authentication(HomePage)} />
+                            <Route path="/search" component={Authentication(SearchPage)} />
+                            <Route path="/game/:code" component={Authentication(GameDetailPage)} />
+                            <Route path="/category/:category" component={Authentication(CategoryPage)} />
+                            <Route path="/login" component={LoginPage} />
+                        </Switch>
                     </div>
                 </div>
             </Router>

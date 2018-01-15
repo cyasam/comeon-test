@@ -77,9 +77,8 @@ const playerResult = (req) => {
 
         return {
             status: 'success',
-            player: {
-                username, ...player
-            }
+            username, 
+            ...player
         }
     } else {
         return {
@@ -103,8 +102,9 @@ server.post('/player', (req, res) => {
     const result = playerResult(req);
     return res.send(result);
 });
+
 server.use(router);
 
 server.listen(3000, () => {
   console.log('JSON Server is running...')
-})
+});

@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchGames } from '../actions';
 import GameList from '../components/GameList';
 import CategoryList from '../components/CategoryList';
-import ContainerHeader from '../components/ContainerHeader';
 
 class HomePage extends Component {
     componentDidMount(){
@@ -13,7 +12,6 @@ class HomePage extends Component {
     render(){
         return (
             <Fragment>
-                <ContainerHeader />
                 <div className="ui grid">
                     <div className="twelve wide column">
                         <GameList games={this.props.games} />

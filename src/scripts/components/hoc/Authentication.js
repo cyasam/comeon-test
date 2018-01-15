@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import ContainerHeader from '../ContainerHeader';
 
-export default (Component) => {
-    class Authentication extends React.Component {
+export default (WrappedComponent) => {
+    class Authentication extends Component {
         componentWillMount() {
             if (!this.props.auth) {
               this.props.history.push('/login');
@@ -22,7 +23,10 @@ export default (Component) => {
             }
 
             return(
-                <Component {...this.props} />
+                <Fragment>
+                    <ContainerHeader />
+                    <WrappedComponent {...this.props} />
+                </Fragment>
             );
         }
     }

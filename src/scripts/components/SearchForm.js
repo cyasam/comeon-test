@@ -21,12 +21,12 @@ class SearchForm extends Component {
     }
 
     render(){
-        const { handleSubmit } = this.props;
+        const { handleSubmit, search } = this.props;
 
         return(
             <form onSubmit={handleSubmit(this.handleSubmit)}>
                 <div className="search ui small icon input ">
-                        <Field name="q" type="text" placeholder="Search Game" component="input" />
+                        <Field name="q" type="text" placeholder="Search Game" component="input" defaultValue={search.q} />
                         <i className="search icon" />
                 </div>
             </form>
@@ -35,9 +35,7 @@ class SearchForm extends Component {
 }
 
 const mapStateToProps = state => ({
-    initialValues: {
-        q: state.search.q
-    }
+    search: state.search
 });
 
 export default withRouter(

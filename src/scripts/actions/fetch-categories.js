@@ -10,18 +10,30 @@ export const fetchCategories = (data, history) => {
             type: FETCH_CATEGORIES_REQUEST
         });
 
-        const response = await axios('http://localhost:3000/categories');
-
-        if(response.status === 200){
-            dispatch({
-                type: FETCH_CATEGORIES_SUCCESS,
-                payload: response.data
-            })
-        } else {
+        try {
+            const response = await axios('http://localhost:3000/categories');
+            
+            if(response.status === 200){
+                dispatch({
+                    type: FETCH_CATEGORIES_SUCCESS,
+                    payload: {
+                        data: response.data
+                    }
+                })
+            } else {
+                dispatch({
+                    type: FETCH_CATEGORIES_ERROR,
+                    payload: response.data.error
+                })
+            }
+        }
+        catch(err) {
             dispatch({
                 type: FETCH_CATEGORIES_ERROR,
-                error: response.data.error
+                payload: {
+                    error: 'Something happened...'
+                }
             })
-        }
+        }  
     }
 };

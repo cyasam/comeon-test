@@ -12,19 +12,29 @@ export const fetchPlayer = () => {
 
         const data = {
             username: localStorage.getItem('auth')
+        };
+
+        try {
+            const response = await axios('http://localhost:3000/player', { method: 'POST', data });
+
+            if(response.status === 200){
+                dispatch({
+                    type: FETCH_PLAYER_SUCCESS,
+                    payload: response.data
+                })
+            } else {
+                dispatch({
+                    type: FETCH_PLAYER_ERROR,
+                    payload: response.data.error
+                })
+            }
         }
-
-        const response = await axios('http://localhost:3000/player', { method: 'POST', data });
-
-        if(response.status === 200){
-            dispatch({
-                type: FETCH_PLAYER_SUCCESS,
-                payload: response.data.player
-            })
-        } else {
+        catch(err) {
             dispatch({
                 type: FETCH_PLAYER_ERROR,
-                error: response.data.error
+                payload: {
+                    error: 'Something happened...'
+                }
             })
         }
     }

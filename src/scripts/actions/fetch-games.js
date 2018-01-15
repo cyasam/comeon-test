@@ -10,17 +10,29 @@ export const fetchGames = (data, history) => {
             type: FETCH_GAMES_REQUEST
         });
 
-        const response = await axios('http://localhost:3000/games');
+        try {
+            const response = await axios('http://localhost:3000/games');
 
-        if(response.status === 200){
-            dispatch({
-                type: FETCH_GAMES_SUCCESS,
-                payload: response.data
-            })
-        } else {
+            if(response.status === 200){
+                dispatch({
+                    type: FETCH_GAMES_SUCCESS,
+                    payload: {
+                        data: response.data
+                    }
+                })
+            } else {
+                dispatch({
+                    type: FETCH_GAMES_ERROR,
+                    payload: response.data.error
+                })
+            }
+        }
+        catch(err) {
             dispatch({
                 type: FETCH_GAMES_ERROR,
-                error: response.data.error
+                payload: {
+                    error: 'Something happened...'
+                }
             })
         }
     }

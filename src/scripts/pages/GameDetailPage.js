@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { fetchGames } from '../actions';
-import ContainerHeader from '../components/ContainerHeader';
 
 class GameDetailPage extends Component {
     componentDidMount(){
@@ -48,7 +47,6 @@ class GameDetailPage extends Component {
 
         return(
             <Fragment>
-                <ContainerHeader />
                 <div className="game-detail">
                     <div className="game-detail-top">
                         <div className="logout ui secondary button inverted"
