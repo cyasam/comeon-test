@@ -12,6 +12,14 @@ class SearchForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount(){
+        const { history } = this.props;
+        const query = queryString.parse(history.location.search);
+        this.props.fetchSearch(query, history);
+        
+        this.props.initialize({ q: query.q });
+    }
+
     trimValue(value){
         return value.trim();
     }
@@ -22,11 +30,12 @@ class SearchForm extends Component {
 
     render(){
         const { handleSubmit, search } = this.props;
+        console.log(search);
 
         return(
             <form onSubmit={handleSubmit(this.handleSubmit)}>
                 <div className="search ui small icon input ">
-                        <Field name="q" type="text" placeholder="Search Game" component="input" defaultValue={search.q} />
+                        <Field name="q" type="text" placeholder="Search Game" component="input" />
                         <i className="search icon" />
                 </div>
             </form>

@@ -2,17 +2,13 @@ import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
-import { fetchGames, fetchSearch } from '../actions';
+import { fetchGames } from '../actions';
 import GameList from '../components/GameList';
 import CategoryList from '../components/CategoryList';
 
 class SearchPage extends Component {
     componentDidMount(){
         this.props.fetchGames();
-
-        const { history } = this.props;
-        const query = queryString.parse(history.location.search);
-        this.props.fetchSearch(query, history);
     }
 
     renderGames(){
@@ -47,4 +43,4 @@ const mapStateToProps = state => ({
     search: state.search
 });
 
-export default withRouter(connect(mapStateToProps, { fetchGames, fetchSearch })(SearchPage));
+export default withRouter(connect(mapStateToProps, { fetchGames })(SearchPage));

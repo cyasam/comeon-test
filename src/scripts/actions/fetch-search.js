@@ -3,7 +3,6 @@ export const FETCH_SEARCH = 'FETCH_SEARCH';
 export const fetchSearch = (data, history) => {
     return dispatch => {
         const submitData = { ...data };
-        submitData.q = submitData.q || '';
 
         dispatch({
             type: FETCH_SEARCH,
