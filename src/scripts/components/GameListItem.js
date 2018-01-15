@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class GameListItem extends Component {
     gameImage (gameItem) { 
@@ -20,10 +21,10 @@ class GameListItem extends Component {
                         { gameItem.description }
                     </div>
                     <div className="extra">
-                        <div className="play ui right floated secondary button inverted">
+                        <Link to={`/game/${gameItem.code}`} className="play ui right floated secondary button inverted">
                             Play
                             <i className="right chevron icon" />
-                        </div>
+                        </Link>
                     </div>
                 </div>
             </div>
