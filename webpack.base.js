@@ -6,8 +6,8 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
   entry: {
-    app: './src/scripts/index.js',
-    vendor: ['babel-polyfill', 'react', 'react-dom', 'react-router-dom', 'react-redux', 'redux', 'redux-thunk','redux-form']
+    app: ['babel-polyfill', './src/scripts/index.js'],
+    vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux', 'redux-thunk','redux-form']
   },
   output: {
     path: path.resolve(__dirname, 'dist')
@@ -66,7 +66,8 @@ const config = {
   },
   plugins:[
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor']
+      names: ['vendor'],
+      minChunks: Infinity
     }),
     new HtmlWebpackPlugin({
       template: './src/template/index.html'

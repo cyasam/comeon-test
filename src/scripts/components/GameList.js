@@ -20,14 +20,14 @@ class GameList extends Component {
     render(){
         if(this.props.games.isFetching){
             return <div>Loading...</div>
-        } else{
-            if(!this.props.games.data.length){
-                return <div>No games found...</div>;
-            }
-            
-            return this.renderComponent();
-        }        
-    }
+        } 
+
+        if(!this.props.games.data.length){
+            return <div>No games found...</div>;
+        }
+        
+        return this.renderComponent();    
+}
 };
 
 export default GameList;

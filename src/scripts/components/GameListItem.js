@@ -22,7 +22,7 @@ class GameListItem extends Component {
                     </div>
                     <div className="extra">
                         <Link to={`/game/${gameItem.code}`} className="play ui right floated secondary button inverted">
-                            Play
+                            Read More
                             <i className="right chevron icon" />
                         </Link>
                     </div>

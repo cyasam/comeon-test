@@ -78,15 +78,18 @@
   "categories": [
     {
       "id": 0,
-      "name": "ALL"
+      "name": "ALL",
+      "slug": "all"
     },
     {
       "id": 1,
-      "name": "VIDEO SLOTS"
+      "name": "VIDEO SLOTS",
+      "slug": "video-slots"
     },
     {
       "id": 2,
-      "name": "SLOT MACHINES"
+      "name": "SLOT MACHINES",
+      "slug": "slot-machines"
     }
   ]
 }

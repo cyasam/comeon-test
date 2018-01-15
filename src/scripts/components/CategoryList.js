@@ -26,13 +26,13 @@ class CategoryList extends Component {
     render(){
         if(this.props.categories.isFetching){
             return <div>Loading...</div>
-        } else{
-            if(!this.props.categories.data.length){
-                return <div>No game categories found...</div>;
-            }
-            
-            return this.renderComponent();
-        }        
+        }
+        
+        if(!this.props.categories.data.length){
+            return <div>No game categories found...</div>;
+        }
+        
+        return this.renderComponent();     
     }
 };
 

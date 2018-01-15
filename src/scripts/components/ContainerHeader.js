@@ -16,6 +16,10 @@ class ContainerHeader extends Component {
     }
 
     renderImage({ avatar }){
+        if(!avatar){
+            return null;
+        }
+        
         const avatarImage = require(`../../${avatar}`);
 
         return <img className="ui avatar image" src={avatarImage} alt="avatar" />;
