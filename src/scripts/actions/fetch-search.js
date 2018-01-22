@@ -10,7 +10,7 @@ export const fetchSearch = (data, history) => {
         });
 
         const query = submitData.q ? encodeURIComponent(submitData.q.trim()) : '';
-        const search = `?q=${query}`;
+        const search = query ? `?q=${query}` : '';
         
         if(history.location.search !== search){
             const searchHistory = {
