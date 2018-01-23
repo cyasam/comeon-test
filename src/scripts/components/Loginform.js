@@ -25,12 +25,18 @@ class Loginform extends Component {
         const { formResult } = this.props;
 
         if(Object.keys(formResult).length){
-            const { error, status } = formResult;
+            const { error, auth, isFetching } = formResult;
             return (
                 <Fragment>
-                { status === 'fail' && 
+                { !auth && error && 
                     <div className="error-message">
                         {error}
+                    </div>
+                }
+                {
+                    isFetching && 
+                    <div className="error-message">
+                        Loading...
                     </div>
                 }
                 </Fragment>

@@ -43,7 +43,15 @@ class GameDetailPage extends Component {
     }
 
     render(){
-        const { history, match: { params: { code } }} = this.props;
+        const { games, history, match: { params: { code } }} = this.props;
+
+        if(games.isFetching){
+            return <div>Loading...</div>
+        } 
+
+        if(games.error){
+            return <div>{games.error}</div>
+        }
 
         return(
             <Fragment>

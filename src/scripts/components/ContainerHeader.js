@@ -31,7 +31,7 @@ class ContainerHeader extends Component {
     }
 
     renderComponent(){
-        const { player } = this.props;
+        const { player, error } = this.props;
 
         if(player.isFetching){
             return <div>Loading...</div>;
@@ -52,6 +52,9 @@ class ContainerHeader extends Component {
                             <div className="header"><b className="name">{ player.name }</b></div>
                             <div className="description event">{ player.event }</div>
                         </div>
+                        {
+                            error && <div className="error-message">{error}</div>
+                        }
                     </div>
 
                 </div>
@@ -79,7 +82,9 @@ class ContainerHeader extends Component {
 }
 
 const mapStateToProps = state => ({
-    player: state.player
+    player: state.player,
+    auth: state.authentication.auth,
+    error: state.authentication.error
 });
 
 export default withRouter(connect(mapStateToProps, { fetchPlayer, handleLogout })(ContainerHeader));
