@@ -13,6 +13,7 @@ import LoginPage from './pages/LoginPage';
 import SearchPage from './pages/SearchPage';
 import GameDetailPage from './pages/GameDetailPage';
 import CategoryPage from './pages/CategoryPage';
+import NotFound from './pages/NotFound';
 
 // Store
 import { Provider } from 'react-redux';
@@ -32,6 +33,7 @@ const App = () => {
                             <Route path="/game/:code" component={Authentication(GameDetailPage)} />
                             <Route path="/category/:category" component={Authentication(CategoryPage)} />
                             <Route path="/login" component={LoginPage} />
+                            <Route path="*" component={NotFound} />
                         </Switch>
                     </div>
                 </div>
