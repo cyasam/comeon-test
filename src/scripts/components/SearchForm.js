@@ -13,8 +13,8 @@ class SearchForm extends Component {
     }
 
     componentDidMount(){
-        const { history } = this.props;
-        const query = queryString.parse(history.location.search);
+        const { history, location } = this.props;
+        const query = queryString.parse(location.search);
         this.props.fetchSearch(query, history);
         
         this.props.initialize({ q: query.q });
@@ -30,7 +30,6 @@ class SearchForm extends Component {
 
     render(){
         const { handleSubmit, search } = this.props;
-        console.log(search);
 
         return(
             <form onSubmit={handleSubmit(this.handleSubmit)}>
